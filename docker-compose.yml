@@ -1,0 +1,55 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '3306:${DB_PORT}'
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: runner
+    environment:
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      AMO_CLIENT_ID: ${AMO_CLIENT_ID}
+      AMO_CLIENT_SECRET: ${AMO_CLIENT_SECRET}
+      AMO_REDIRECT_URI: ${AMO_REDIRECT_URI}
+      AMO_DOMAIN: ${AMO_DOMAIN}
+      AMO_ACCESS_TOKEN: ${AMO_ACCESS_TOKEN}
+      PORT: ${PORT}
+      SERVER_URL: ${SERVER_URL}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/src/database:/app/src/database
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

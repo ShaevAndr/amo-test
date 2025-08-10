@@ -1,0 +1,82 @@
+### Webhook: Contact added (amo format)
+POST http://localhost:80/amo/webhooks/contact/added
+Content-Type: application/json
+
+{
+  "contacts": {
+    "add": [
+      {
+        "id": 12345,
+        "name": "Andrew Test",
+        "custom_fields_values": [
+          { "field_code": "PHONE", "values": [{ "value": "+7 999 123-45-67" }] }
+        ]
+      }
+    ]
+  }
+}
+
+### Webhook: Contact updated (amo format)
+POST http://localhost:80/amo/webhooks/contact/updated
+Content-Type: application/json
+
+{
+  "contacts": {
+    "update": [
+      {
+        "id": 12345,
+        "name": "Andrew Test Updated",
+        "custom_fields_values": [
+          { "field_code": "PHONE", "values": [{ "value": "+7 999 000-00-00" }] }
+        ]
+      }
+    ]
+  }
+}
+
+### Webhook: Lead added (amo format)
+POST http://localhost:80/amo/webhooks/lead/added
+Content-Type: application/json
+
+{
+  "leads": {
+    "add": [
+      {
+        "id": 543211,
+        "name": "Test Lead11",
+        "status_id": 123456,
+        "_embedded": { "contacts": [{ "id": 33922041, "is_main": true }] }
+      }
+    ]
+  }
+}
+
+### Webhook: Lead updated (amo format)
+POST http://localhost:80/amo/webhooks/lead/updated
+Content-Type: application/json
+
+{
+  "leads": {
+    "update": [
+      {
+        "id": 54321,
+        "name": "Test Lead Updated",
+        "status_id": 6543211,
+        "_embedded": { "contacts": [{ "id": 33920686, "is_main": true }] }
+      }
+    ]
+  }
+}
+
+### Contact create request
+POST http://localhost:80/contacts/create
+Content-Type: application/json
+
+{
+  "name": "andrew",
+  "phone": "89956151828"
+}
+
+### Install
+GET http://localhost:80/amo/webhooks/amo/app/install
+
