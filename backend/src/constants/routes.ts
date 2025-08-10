@@ -4,26 +4,26 @@ export const ROUTES = {
       BASE: '/amo/webhooks',
       CONTACT: {
         ADDED: '/contact/added',
-        UPDATED: '/contact/updated'
+        UPDATED: '/contact/updated',
       },
       LEAD: {
         ADDED: '/lead/added',
-        UPDATED: '/lead/updated'
-      }
+        UPDATED: '/lead/updated',
+      },
     },
     APP: {
       INSTALL: '/amo/app/install',
-      DELETE: '/amo/app/delete'
-    }
+      DELETE: '/amo/app/delete',
+    },
   },
   API: {
     CONTACTS: {
-        BASE: '/contacts',
-        CREATE: '/create'
+      BASE: '/contacts',
+      CREATE: '/create',
     },
     LEADS: {
-        BASE: '/leads',
-        CREATE: '/create'
-    } 
-  }
+      BASE: '/leads',
+      CREATE: '/create',
+    },
+  },
 } as const;

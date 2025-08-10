@@ -30,19 +30,18 @@ export class AxiosAmoTransport implements AmoTransport {
   async subscribeHook(hook: HookSubscribe): Promise<void> {
     try {
       await this.http.post('/api/v4/webhooks', hook);
-    }catch (error) {
+    } catch (error) {
       // @ts-ignore
-      console.error(JSON.stringify(error, null, 2))
+      console.error(JSON.stringify(error, null, 2));
     }
   }
 
   async unsubscribeHook(hook: HookUnsubscribe): Promise<void> {
     try {
-      await this.http.delete('/api/v4/webhooks', {data: hook});
-    }catch (error) {
+      await this.http.delete('/api/v4/webhooks', { data: hook });
+    } catch (error) {
       // @ts-ignore
-       console.error('Hook subscription error:', {status: error.response?.status, data: error.response?.data, message: error.message
-    });
+      console.error('Hook subscription error:', { status: error.response?.status, data: error.response?.data, message: error.message });
     }
   }
 

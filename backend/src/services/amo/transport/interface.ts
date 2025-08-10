@@ -78,7 +78,7 @@ export interface CustomFieldValue {
 
 export interface HookSubscribe {
   destination: string;
-  settings: string[],
+  settings: string[];
 }
 
 export interface HookUnsubscribe {
@@ -91,6 +91,6 @@ export interface AmoTransport {
   getLeadByName(name: string): Promise<ILead | null>;
   addLead(lead: CreateLeadPayload): Promise<number>;
   addContact(contact: CreateContactPayload): Promise<number>;
-  subscribeHook(hook: HookSubscribe): Promise<void>
-  unsubscribeHook(hook: HookUnsubscribe): Promise<void>
+  subscribeHook(hook: HookSubscribe): Promise<void>;
+  unsubscribeHook(hook: HookUnsubscribe): Promise<void>;
 }

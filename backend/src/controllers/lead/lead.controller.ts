@@ -7,8 +7,7 @@ import { LeadCreateSchema, type LeadCreateDTO } from './dto/create-lead.dto';
 import { validateRequestBody } from 'zod-express-middleware';
 import { ROUTES } from '@/constants/routes';
 
-@controller(ROUTES.API.LEADS.BASE
-)
+@controller(ROUTES.API.LEADS.BASE)
 export class LeadController implements interfaces.Controller {
   constructor(@inject(CONTAINER_TYPES.LeadService) private leadService: LeadService) {}
 

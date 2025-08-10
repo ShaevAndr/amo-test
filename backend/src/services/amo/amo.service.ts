@@ -31,17 +31,17 @@ export class AmoService {
 
   async install() {
     for (const hook of amoHooks) {
-      await this.amoTransport.subscribeHook(hook)
+      await this.amoTransport.subscribeHook(hook);
     }
   }
 
   async uninstall() {
-    const destinations = amoHooks.map(hook=>({destination: hook.destination}))
+    const destinations = amoHooks.map(hook => ({ destination: hook.destination }));
     for (const destination of destinations) {
-      await this.amoTransport.unsubscribeHook(destination)
+      await this.amoTransport.unsubscribeHook(destination);
     }
   }
-  
+
   private mapContactToAmo(dto: ContactCreateDTO): CreateContactPayload {
     return {
       name: dto.name,

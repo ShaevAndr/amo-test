@@ -12,12 +12,12 @@ export class AmoController implements interfaces.Controller {
   constructor(
     @inject(CONTAINER_TYPES.AmoWebhookService) private amoWebhookService: AmoWebhookService,
     @inject(CONTAINER_TYPES.AmoService) private amoService: AmoService
-) {}
+  ) {}
 
   @httpPost(ROUTES.AMO.WEBHOOKS.CONTACT.ADDED)
   async contactAdded(@request() req: Request<{}, {}, AmoWebhook>, @response() res: Response) {
     this.amoWebhookService.processContactAdded(req.body);
-    console.log("contact add")
+    console.log('contact add');
     return res.status(207).end();
   }
 
@@ -41,13 +41,13 @@ export class AmoController implements interfaces.Controller {
 
   @httpGet(ROUTES.AMO.APP.INSTALL)
   async install(@request() req, @response() res) {
-    this.amoService.install()
+    this.amoService.install();
     return res.status(200).end();
   }
 
   @httpGet(ROUTES.AMO.APP.DELETE)
   async uninstall(@request() req, @response() res) {
-    this.amoService.uninstall()
+    this.amoService.uninstall();
     return res.status(200).end();
   }
 }

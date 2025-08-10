@@ -27,7 +27,6 @@ const envSchema = z.object({
   AMO_DOMAIN: z.string(),
   AMO_ACCESS_TOKEN: z.string().optional(),
   SERVER_URL: z.string(),
-
 });
 
 const parsed = envSchema.safeParse(process.env);
